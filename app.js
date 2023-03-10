@@ -9,10 +9,12 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
+const dotenv = require("dotenv");
+dotenv.config();
+
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB =
-  "mongodb+srv://josefhrebec02:ttiU1ktC4zW0MA8k@cluster0.ifipw1i.mongodb.net/local_library?retryWrites=true&w=majority";
+const mongoDB = process.env.PASSWD;
 
 main().catch((err) => console.log(err));
 async function main() {
