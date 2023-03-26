@@ -1,0 +1,11 @@
+extends layout
+
+block content
+ h1 #{genre.name}
+
+ if book_list.length
+   each book in book_list
+    p #{book.title}
+
+ else
+   p Do you really want to delete this genre?
