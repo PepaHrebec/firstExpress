@@ -188,5 +188,39 @@ exports.bookinstance_update_post = [
       due_back: req.body.due_back,
       _id: req.params.id,
     });
+    if (!errors.isEmpty()) {
+      async.parallel(
+        {
+          bookinstance(callback) {
+            BookInstance.findById(req.params.id).exec(callback);
+          },
+          books(callback) {
+            Book.find(callback);
+          },
+        },
+        (err, results) => {
+          if (err) {
+            return next(err);
+          }
+          res.render("bookinstance_form", {
+            title: "Update Book Instance",
+            selected_book: results.bookinstance.book,
+            book_list: results.books,
+            bookinstance: results.bookinstance,
+          });
+        }
+      );
+      return;
+    }
+    BookInstance.findByIdAndUpdate(
+      req.params.id,
+      Instance,
+      (err, theinstance) => {
+        if (err) {
+          return next(err);
+        }
+        res.redirect(theinstance.url);
+      }
+    );
   },
 ];
