@@ -42,5 +42,17 @@ AuthorSchema.virtual("death_formatted").get(function () {
     : "unknown";
 });
 
+AuthorSchema.virtual("birth_ISO").get(function () {
+  return this.date_of_birth
+    ? DateTime.fromJSDate(this.date_of_birth).toISODate()
+    : null;
+});
+
+AuthorSchema.virtual("death_ISO").get(function () {
+  return this.date_of_death
+    ? DateTime.fromJSDate(this.date_of_death).toISODate()
+    : null;
+});
+
 // Export model
 module.exports = mongoose.model("Author", AuthorSchema);
