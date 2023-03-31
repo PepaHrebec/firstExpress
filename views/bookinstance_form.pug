@@ -21,10 +21,10 @@ block content
     div.form-group
       label(for='status') Status:
       select#status.form-control(type='select' placeholder='Select status' name='status' required='true')
-        option(selected=(bookinstance.status=='Maintenance' ? 'selected' : false) value='Maintenance') Maintenance
-        option(selected=(bookinstance.status=='Available' ? 'selected' : false) value='Available') Available
-        option(selected=(bookinstance.status=='Loaned' ? 'selected' : false) value='Loaned') Loaned
-        option(selected=(bookinstance.status=='Reserved' ? 'selected' : false) value='Reserved') Reserved
+        option(selected=(bookinstance===undefined ? false : (bookinstance.status=='Maintenance' ? 'selected' : false)) value='Maintenance') Maintenance
+        option(selected=(bookinstance===undefined ? false : (bookinstance.status=='Available' ? 'selected' : false)) value='Available') Available
+        option(selected=(bookinstance===undefined ? false : (bookinstance.status=='Loaned' ? 'selected' : false)) value='Loaned') Loaned
+        option(selected=(bookinstance===undefined ? false : (bookinstance.status=='Reserved' ? 'selected' : false)) value='Reserved') Reserved
 
     button.btn.btn-primary(type='submit') Submit
 
