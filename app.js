@@ -26,7 +26,7 @@ dotenv.config();
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB = process.env.PASSWD;
+const mongoDB = process.env.MONGODB_URI || process.env.PASSWD;
 
 main().catch((err) => console.log(err));
 async function main() {
